@@ -218,20 +218,65 @@ img {
     animation: fadeUp 1s ease;
 }
 
-.tag {
-    display: inline-block;
+/* =========================================================
+   TAG - OLÁ, EU SOU
+========================================================= */
 
-    padding: 7px 14px;
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 9px 16px;
 
     margin-bottom: 20px;
 
-    border: 1px solid rgba(0, 217, 255, 0.25);
+    border: 1px solid rgba(0, 217, 255, 0.45);
 
     border-radius: 30px;
 
-    color: var(--cyan);
+    background: linear-gradient(
+        135deg,
+        rgba(0, 217, 255, 0.08),
+        rgba(180, 0, 255, 0.08)
+    );
 
-    font-size: 13px;
+    color: #00d9ff;
+
+    /* NOVO: tamanho maior para "Olá, eu sou" */
+    font-size: 17px;
+
+    /* NOVO: deixa a escrita mais destacada */
+    font-weight: 600;
+
+    /* NOVO: melhora o espaçamento das letras */
+    letter-spacing: 0.3px;
+
+    box-shadow:
+        0 0 12px rgba(0, 217, 255, 0.08);
+
+    backdrop-filter: blur(8px);
+
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+.tag:hover {
+    color: #ffffff;
+
+    border-color: #00d9ff;
+
+    background: linear-gradient(
+        135deg,
+        rgba(0, 217, 255, 0.15),
+        rgba(180, 0, 255, 0.15)
+    );
+
+    box-shadow:
+        0 0 18px rgba(0, 217, 255, 0.18),
+        0 0 30px rgba(180, 0, 255, 0.10);
+
+    transform: translateY(-2px);
 }
 
 .hero h1 {
@@ -1256,6 +1301,13 @@ img {
 
     .contact-content {
         padding: 25px;
-    }
+
+    } 
+    
+    /* .teste ;
+    } */
+
 
 }
+
+
