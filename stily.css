@@ -571,79 +571,148 @@ img {
 
 
 /* =========================================================
-   CARROSSEL - ESTRUTURA
+   CARROSSEL
 ========================================================= */
 
 .carousel {
     display: flex;
+
     align-items: center;
+
     gap: 15px;
-    width: 100%;
 }
 
-/* Área visível: impede que os cards ultrapassem o carrossel */
-.carousel-viewport {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Faixa horizontal que será movimentada pelo JavaScript */
 .cards {
-    display: flex;
+    flex: 1;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
     gap: 18px;
-    width: 100%;
-    transition: transform 0.6s ease;
-    will-change: transform;
 }
 
-/* Desktop: 4 cards visíveis ao mesmo tempo */
-.cards .service-card {
-    flex: 0 0 calc((100% - 54px) / 4);
-    width: calc((100% - 54px) / 4);
-}
 
-/* =========================================================
-   SETAS DO CARROSSEL
-========================================================= */
+/* SETAS */
 
 .carousel-arrow {
     width: 45px;
     height: 45px;
+
     flex-shrink: 0;
+
     border-radius: 50%;
+
     border: 1px solid rgba(255,255,255,0.35);
+
     background: transparent;
+
     color: white;
+
     cursor: pointer;
+
     transition: 0.3s;
-    z-index: 5;
 }
 
 .carousel-arrow:hover {
     border-color: var(--cyan);
+
     color: var(--cyan);
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
-    transform: scale(1.08);
+
+    box-shadow:
+        0 0 20px rgba(0, 217, 255, 0.2);
 }
+
 
 /* =========================================================
-   ANIMAÇÃO DAS IMAGENS DO CARROSSEL
+   CARDS DE SERVIÇOS
 ========================================================= */
 
-.cards .service-card > img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    transition: transform 0.5s ease, filter 0.5s ease;
+.service-card {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 350px;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(18, 25, 48, 0.9),
+            rgba(7, 11, 26, 0.9)
+        );
+
+    transition: 0.4s;
 }
 
-/* Ao passar o mouse sobre a imagem */
-.cards .service-card:hover > img {
-    transform: scale(1.08);
-    filter: brightness(1.12) saturate(1.15);
+.service-card:hover {
+    transform: translateY(-7px);
+
+    border-color:
+        rgba(124, 58, 237, 0.6);
+
+    box-shadow:
+        0 15px 40px rgba(124, 58, 237, 0.15);
 }
+
+.service-card > img {
+    width: 100%;
+    height: 150px;
+
+    object-fit: cover;
+}
+
+.card-icon {
+    width: 45px;
+    height: 45px;
+
+    margin: -20px 0 12px 15px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: var(--gradient);
+
+    box-shadow:
+        0 0 20px rgba(176, 38, 255, 0.35);
+}
+
+.service-card h3 {
+    font-size: 17px;
+
+    margin: 0 15px 8px;
+}
+
+.service-card p {
+    color: var(--text-light);
+
+    font-size: 13px;
+
+    padding: 0 15px;
+}
+
+.card-guarantee {
+    display: inline-block;
+
+    margin: 15px;
+
+    color: var(--purple);
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
 
 /* =========================================================
    PONTOS DO CARROSSEL
@@ -651,28 +720,28 @@ img {
 
 .carousel-dots {
     display: flex;
+
     justify-content: center;
+
     gap: 7px;
+
     margin-top: 20px;
 }
 
 .carousel-dots span {
     width: 7px;
     height: 7px;
-    border-radius: 50%;
-    background: #454a61;
-    cursor: pointer;
-    transition: 0.3s;
-}
 
-.carousel-dots span:hover {
-    transform: scale(1.4);
+    border-radius: 50%;
+
+    background: #454a61;
 }
 
 .carousel-dots .active {
     background: var(--purple);
-    box-shadow: 0 0 10px var(--purple);
-    transform: scale(1.25);
+
+    box-shadow:
+        0 0 10px var(--purple);
 }
 
 
@@ -1132,9 +1201,9 @@ img {
         grid-template-columns: 1fr;
     }
 
-    /* O carrossel continua horizontal no tablet */
     .cards {
-        display: flex;
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
     .skills-grid {
@@ -1209,53 +1278,12 @@ img {
         gap: 20px;
     }
 
-    /* =====================================================
-       CARROSSEL NO CELULAR
-       Mostra 1 card por vez e permite o movimento automático.
-    ===================================================== */
-
-    .carousel {
-        gap: 8px;
-    }
-
-    .carousel-viewport {
-        width: 100%;
-        min-width: 0;
-    }
-
     .cards {
-        display: flex;
-        gap: 18px;
-        width: 100%;
+        grid-template-columns: 1fr;
     }
 
-    /* 1 card ocupando toda a área disponível */
-    .cards .service-card {
-        flex: 0 0 100%;
-        width: 100%;
-        min-width: 100%;
-    }
-
-    /* Setas continuam funcionando no celular */
     .carousel-arrow {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 34px;
-        height: 34px;
-        padding: 0;
-    }
-
-    /* Pontos continuam visíveis e clicáveis */
-    .carousel-dots {
-        display: flex;
-        margin-top: 18px;
-    }
-
-    /* No celular não existe hover; a imagem permanece estável. */
-    .cards .service-card:hover > img {
-        transform: none;
-        filter: none;
+        display: none;
     }
 
     .skills-grid {
@@ -1282,3 +1310,606 @@ img {
 
 }
 
+
+
+
+/* =========================================================
+   CORREÇÃO FINAL DO CARROSSEL - LOGICDEV
+   Mostra 1 card por vez em computador e celular.
+   As setas e os 4 pontos são controlados pelo JavaScript.
+========================================================= */
+
+.carousel {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+}
+
+/* Área central onde aparece UM card por vez */
+.cards {
+    flex: 1;
+    min-width: 0;
+    display: block;
+    width: 100%;
+}
+
+/* Por padrão, os cards ficam escondidos */
+.cards .service-card.active {
+    display: block;
+    width: 100%;
+    min-height: 420px;
+    margin: 0;
+}
+
+/* Somente o card atual aparece */
+.cards .service-card.active {
+    display: block;
+}
+
+/* Imagem grande do card atual */
+.cards .service-card > img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+/* Animação ao passar o mouse na imagem */
+.cards .service-card:hover > img {
+    transform: scale(1.04);
+    filter: brightness(1.08) saturate(1.08);
+}
+
+/* Setas sempre visíveis e funcionais */
+.carousel-arrow {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.3s ease;
+    z-index: 5;
+}
+
+.carousel-arrow:hover {
+    transform: scale(1.08);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.25);
+}
+
+/* Pontos de navegação */
+.carousel-dots {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.carousel-dots span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #454a61;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.carousel-dots span:hover {
+    transform: scale(1.25);
+}
+
+.carousel-dots span.active {
+    background: var(--purple);
+    box-shadow: 0 0 10px var(--purple);
+    transform: scale(1.25);
+}
+
+/* =========================================================
+   CELULAR
+   1 card grande por vez + setas dos dois lados.
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .carousel {
+        gap: 8px;
+    }
+
+    .cards {
+        flex: 1;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .cards .service-card {
+        width: 100%;
+        min-height: 0;
+    }
+
+    .cards .service-card > img {
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+    }
+
+    .carousel-arrow {
+        display: flex !important;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 38px;
+        font-size: 14px;
+    }
+
+    .carousel-dots {
+        display: flex !important;
+        margin-top: 16px;
+    }
+}
+/* =========================================================
+   CARROSSEL LOGICDEV - CORREÇÃO
+   UM CARD POR VEZ
+========================================================= */
+
+.carousel {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.carousel .cards {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
+
+/* Esconde os cards */
+.carousel .service-card {
+    display: none;
+    width: 100%;
+    margin: 0;
+}
+
+/* Mostra o primeiro card imediatamente */
+.carousel .service-card:first-child {
+    display: block;
+}
+
+/* Mostra o card que o JavaScript selecionar */
+.carousel .service-card.active {
+    display: block;
+}
+
+/* IMAGEM GRANDE */
+.carousel .service-card img {
+    display: block;
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* ANIMAÇÃO DA IMAGEM */
+.carousel .service-card:hover img {
+    transform: scale(1.03);
+    filter: brightness(1.08);
+}
+
+/* SETAS */
+.carousel .carousel-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.35);
+
+    background: transparent;
+    color: white;
+
+    cursor: pointer;
+    z-index: 10;
+
+    transition: 0.3s ease;
+}
+
+.carousel .carousel-arrow:hover {
+    transform: scale(1.1);
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+/* PONTOS */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.carousel-dots span {
+    display: block;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #454a61;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.carousel-dots span.active {
+    background: var(--purple);
+
+    box-shadow: 0 0 10px var(--purple);
+
+    transform: scale(1.3);
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .carousel {
+        gap: 8px;
+    }
+
+    .carousel .cards {
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .carousel .service-card {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .carousel .service-card img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+    }
+
+    .carousel .carousel-arrow {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+    }
+
+}
+/* =========================================================
+   CARROSSEL - CORREÇÃO FINAL
+   UM CARD POR VEZ
+========================================================= */
+
+/* Área do carrossel */
+.carousel {
+    display: flex !important;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+}
+
+
+/* =========================================================
+   ÁREA ONDE O CARD FICA
+========================================================= */
+
+.carousel .cards {
+    display: block !important;
+
+    position: relative;
+
+    flex: 1 1 auto;
+
+    width: 100% !important;
+    min-width: 0;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   ESCONDE OS CARDS QUE NÃO ESTÃO ATIVOS
+========================================================= */
+
+.carousel .cards .service-card:not(.active) {
+    display: none !important;
+}
+
+
+/* =========================================================
+   MOSTRA SOMENTE O CARD ATIVO
+========================================================= */
+
+.carousel .cards .service-card.active {
+    display: block !important;
+
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+
+    animation: carouselEntrada 0.45s ease;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO AO TROCAR DE IMAGEM
+========================================================= */
+
+@keyframes carouselEntrada {
+
+    from {
+        opacity: 0;
+        transform: translateX(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+/* =========================================================
+   IMAGEM
+   NÃO CORTA A FOTO
+========================================================= */
+
+.carousel .cards .service-card img {
+    display: block;
+
+    width: 100% !important;
+
+    height: auto !important;
+
+    max-width: 100% !important;
+
+    object-fit: contain !important;
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO DA IMAGEM COM O MOUSE
+========================================================= */
+
+.carousel .cards .service-card:hover img {
+
+    transform: scale(1.02);
+
+    filter: brightness(1.06);
+}
+
+
+/* =========================================================
+   SETAS
+========================================================= */
+
+.carousel .carousel-arrow {
+
+    display: flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 48px !important;
+    height: 48px !important;
+
+    min-width: 48px !important;
+    min-height: 48px !important;
+
+    flex: 0 0 48px !important;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    background: transparent;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.carousel .carousel-arrow:hover {
+
+    transform: scale(1.1);
+
+    color: var(--cyan);
+
+    border-color: var(--cyan);
+}
+
+
+/* =========================================================
+   PONTOS
+========================================================= */
+
+.carousel-dots {
+
+    display: flex !important;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+}
+
+
+.carousel-dots span {
+
+    display: block !important;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #454a61;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.carousel-dots span.active {
+
+    background: var(--purple);
+
+    box-shadow:
+        0 0 10px var(--purple);
+
+    transform: scale(1.3);
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .carousel {
+
+        gap: 6px;
+
+        width: 100%;
+    }
+
+
+    .carousel .cards {
+
+        width: 100% !important;
+
+        min-width: 0;
+
+        overflow: hidden !important;
+    }
+
+
+    .carousel .cards .service-card {
+
+        width: 100% !important;
+
+        min-width: 100% !important;
+
+        max-width: 100% !important;
+    }
+
+
+    /* IMAGEM NO CELULAR */
+
+    .carousel .cards .service-card img {
+
+        width: 100% !important;
+
+        height: auto !important;
+
+        max-height: 280px;
+
+        object-fit: contain !important;
+    }
+
+
+    /* SETAS MENORES NO CELULAR */
+
+    .carousel .carousel-arrow {
+
+        width: 38px !important;
+
+        height: 38px !important;
+
+        min-width: 38px !important;
+
+        min-height: 38px !important;
+
+        flex: 0 0 38px !important;
+    }
+
+
+    /* PONTOS */
+
+    .carousel-dots {
+
+        margin-top: 14px;
+    }
+
+}
+/* =========================================================
+   AJUSTE SOMENTE DAS IMAGENS DE MANUTENÇÃO
+========================================================= */
+
+.services .carousel .service-card img {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    height: 360px !important;
+
+    object-fit: contain !important;
+
+    display: block;
+}
+
+
+/* =========================================================
+   CELULAR - MANUTENÇÃO
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .services .carousel .service-card img {
+        width: 100% !important;
+
+        height: 220px !important;
+
+        max-height: 220px !important;
+
+        object-fit: contain !important;
+    }
+
+}
