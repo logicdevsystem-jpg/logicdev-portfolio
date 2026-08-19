@@ -1913,3 +1913,39 @@ img {
     }
 
 }
+/* =====================================================
+   LOGO ENTRE A SEÇÃO 1 E A SEÇÃO 2
+   ===================================================== */
+
+/* A seção SOBRE será a referência da posição */
+#sobre {
+    position: relative;
+}
+
+/* Remove a foto como referência da logo */
+#sobre .about-photo {
+    position: static;
+}
+
+/* Logo fica exatamente no meio da divisão
+   entre #inicio e #sobre */
+#sobre .logo-decoration {
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 50;
+}
+/* =====================================================
+   AJUSTE DO TAMANHO DA FOTO DO EMERSON
+   ===================================================== */
+
+.emerson-photo {
+    width: 100%;
+    max-width: 560px;
+    height: 620px;
+    object-fit: cover;
+}
